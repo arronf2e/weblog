@@ -1,6 +1,8 @@
 package com.weblog.web.controller;
 
 import com.weblog.common.aspect.ApiOperationLog;
+import com.weblog.common.enums.ResponseCodeEnum;
+import com.weblog.common.exception.BizException;
 import com.weblog.common.utils.Response;
 import com.weblog.web.model.User;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,7 @@ public class TestController {
     @PostMapping("/test")
     @ApiOperationLog(description = "测试接口")
     public Response test(@RequestBody User user) {
-        return Response.success(user);
+        int i = 1 / 0;
+        return Response.success();
     }
 }
