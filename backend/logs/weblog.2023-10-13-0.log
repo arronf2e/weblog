@@ -1,0 +1,7 @@
+2023-10-13 10:56:27.874 [main] INFO  com.weblog.web.WebApplicationTests - Starting WebApplicationTests using Java 1.8.0_382 on admindeMacBook-Pro.local with PID 7904 (started by admin in /Users/admin/Documents/personal/Javaaaaaaaaa/weblog/backend/web)
+2023-10-13 10:56:27.875 [main] INFO  com.weblog.web.WebApplicationTests - The following 1 profile is active: "prod"
+2023-10-13 10:56:29.647 [main] INFO  com.weblog.web.WebApplicationTests - Started WebApplicationTests in 7.382 seconds (JVM running for 9.421)
+2023-10-13 10:56:30.559 [main] INFO  com.weblog.web.WebApplicationTests - 这是一行 Info 级别日志
+2023-10-13 10:56:30.560 [main] WARN  com.weblog.web.WebApplicationTests - 这是一行 Warn 级别日志
+2023-10-13 10:56:30.560 [main] ERROR com.weblog.web.WebApplicationTests - 这是一行 Error 级别日志
+2023-10-13 10:56:30.560 [main] INFO  com.weblog.web.WebApplicationTests - 这是一行带有占位符日志，作者：犬小哈
