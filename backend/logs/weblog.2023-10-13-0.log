@@ -5,3 +5,17 @@
 2023-10-13 10:56:30.560 [main] WARN  com.weblog.web.WebApplicationTests - 这是一行 Warn 级别日志
 2023-10-13 10:56:30.560 [main] ERROR com.weblog.web.WebApplicationTests - 这是一行 Error 级别日志
 2023-10-13 10:56:30.560 [main] INFO  com.weblog.web.WebApplicationTests - 这是一行带有占位符日志，作者：犬小哈
+[TraceId: ] 2023-10-13 14:31:10.533 [main] INFO  com.weblog.web.WebApplication - Starting WebApplication using Java 1.8.0_382 on admindeMacBook-Pro.local with PID 56723 (/Users/admin/Documents/personal/Javaaaaaaaaa/weblog/backend/web/target/classes started by admin in /Users/admin/Documents/personal/Javaaaaaaaaa/weblog/backend)
+[TraceId: ] 2023-10-13 14:31:10.537 [main] INFO  com.weblog.web.WebApplication - The following 1 profile is active: "prod"
+[TraceId: ] 2023-10-13 14:31:11.693 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[TraceId: ] 2023-10-13 14:31:11.701 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[TraceId: ] 2023-10-13 14:31:11.701 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.80]
+[TraceId: ] 2023-10-13 14:31:11.779 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[TraceId: ] 2023-10-13 14:31:11.780 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1197 ms
+[TraceId: ] 2023-10-13 14:31:12.698 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[TraceId: ] 2023-10-13 14:31:12.710 [main] INFO  com.weblog.web.WebApplication - Started WebApplication in 2.827 seconds (JVM running for 9.171)
+[TraceId: ] 2023-10-13 14:31:39.829 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[TraceId: ] 2023-10-13 14:31:39.830 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[TraceId: ] 2023-10-13 14:31:39.832 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+[TraceId: d4e7b09a-4bf8-44b8-be9c-638607da126e] 2023-10-13 14:31:40.097 [http-nio-8080-exec-1] INFO  com.weblog.common.aspect.ApiOperationLogAspect - ====== 请求开始: [测试接口], 入参: {"username":"zhanghao","sex":1}, 请求类: TestController, 请求方法: test =================================== 
+[TraceId: d4e7b09a-4bf8-44b8-be9c-638607da126e] 2023-10-13 14:31:40.113 [http-nio-8080-exec-1] INFO  com.weblog.common.aspect.ApiOperationLogAspect - ====== 请求结束: [测试接口], 耗时: 33ms, 出参: {"username":"zhanghao","sex":1} =================================== 
