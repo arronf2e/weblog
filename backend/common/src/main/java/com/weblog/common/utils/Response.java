@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Response<T> implements Serializable {
     private boolean success = true;
     private String message;
-    private int code;
+    private int code = 0;
     private T data;
 
     // =================================== 成功响应 ===================================
@@ -32,9 +32,10 @@ public class Response<T> implements Serializable {
         return response;
     }
 
-    public static <T> Response<T> fail(String errorMessage) {
+    public static <T> Response<T> fail(int code, String errorMessage) {
         Response<T> response = new Response<>();
         response.setSuccess(false);
+        response.setCode(code);
         response.setMessage(errorMessage);
         return response;
     }
