@@ -34,7 +34,7 @@ class WebApplicationTests {
 	@Test
 	void insertTest() {
 		UserDO userDO = UserDO.builder()
-				.username("arronf2e")
+				.username("arronf2e111")
 				.password("123456")
 				.createTime(new Date())
 				.updateTime(new Date())
