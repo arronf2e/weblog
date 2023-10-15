@@ -3,6 +3,7 @@ package com.weblog.admin.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.weblog.admin.model.vo.category.DeleteCategoryReqVO;
 import com.weblog.admin.model.vo.category.FindCategoryPageListReqVO;
 import com.weblog.admin.model.vo.category.FindCategoryPageListRspVO;
 import com.weblog.common.enums.ResponseCodeEnum;
@@ -86,5 +87,13 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
 
         return PageResponse.success(categoryDOPage, vos);
 
+    }
+
+    @Override
+    public Response deleteCategory(DeleteCategoryReqVO deleteCategoryReqVO) {
+        Long categoryId = deleteCategoryReqVO.getId();
+        // 删除分类
+        categoryMapper.deleteById(categoryId);
+        return Response.success();
     }
 }
