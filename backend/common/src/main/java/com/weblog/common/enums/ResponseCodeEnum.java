@@ -17,6 +17,9 @@ public enum ResponseCodeEnum implements BaseExceptionInterface {
     USERNAME_OR_PWD_ERROR(20001, "用户名或密码错误"),
     UNAUTHORIZED(20002, "无访问权限，请先登录！"),
 
+    // 文件相关
+    FILE_UPLOAD_FAILED(20008, "文件上传失败！"),
+
     // ----------- 业务异常状态码 -----------
     PRODUCT_NOT_FOUND(20000, "该产品不存在（测试使用）"),
     CATEGORY_NAME_IS_EXISTED(20000, "该分类已存在，请勿重复添加！")
