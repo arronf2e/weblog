@@ -26,9 +26,10 @@ public class Response<T> implements Serializable {
     }
 
     // =================================== 失败响应 ===================================
-    public static <T> Response<T> fail() {
+    public static <T> Response<T> fail(String errorMessage) {
         Response<T> response = new Response<>();
         response.setSuccess(false);
+        response.setMessage(errorMessage);
         return response;
     }
 
