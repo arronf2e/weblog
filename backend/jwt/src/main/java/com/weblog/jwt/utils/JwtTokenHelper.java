@@ -17,6 +17,9 @@ import java.util.Date;
 
 @Component
 public class JwtTokenHelper implements InitializingBean {
+
+    @Value("${jwt.tokenExpireTime}")
+    private Long tokenExpireTime;
     /**
      * 签发人
      */
@@ -65,7 +68,7 @@ public class JwtTokenHelper implements InitializingBean {
     public String generateToken(String username) {
         LocalDateTime now = LocalDateTime.now();
         // Token 一个小时后失效
-        LocalDateTime expireTime = now.plusHours(1);
+        LocalDateTime expireTime = now.plusHours(tokenExpireTime);
 
         return Jwts.builder().setSubject(username)
                 .setIssuer(issuer)
@@ -109,5 +112,20 @@ public class JwtTokenHelper implements InitializingBean {
     public static void main(String[] args) {
         String key = generateBase64Key();
         System.out.println("key: " + key);
+    }
+
+    public void validateToken(String token) {
+        jwtParser.parseClaimsJws(token);
+    }
+
+    public String getUsernameByToken(String token) {
+        try {
+            Claims claims = jwtParser.parseClaimsJws(token).getBody();
+            String username = claims.getSubject();
+            return username;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
