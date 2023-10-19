@@ -22,7 +22,8 @@ public enum ResponseCodeEnum implements BaseExceptionInterface {
 
     // ----------- 业务异常状态码 -----------
     PRODUCT_NOT_FOUND(20000, "该产品不存在（测试使用）"),
-    CATEGORY_NAME_IS_EXISTED(20000, "该分类已存在，请勿重复添加！")
+    CATEGORY_NAME_IS_EXISTED(20000, "该分类已存在，请勿重复添加！"),
+    CATEGORY_NOT_EXISTED(20009, "提交的分类不存在！")
     ;
 
     private int code;
