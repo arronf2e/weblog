@@ -1,6 +1,7 @@
 package com.weblog.admin.service.impl;
 
 import com.google.common.collect.Lists;
+import com.weblog.admin.model.vo.article.DeleteArticleReqVO;
 import com.weblog.admin.model.vo.article.PublishArticleReqVO;
 import com.weblog.admin.service.AdminArticleService;
 import com.weblog.common.domain.dos.*;
@@ -151,5 +152,22 @@ public class AdminArticleServiceImpl implements AdminArticleService {
             });
             articleTagRelMapper.insertBatchSomeColumn(articleTagRelDOS);
         }
+    }
+
+    /**
+     * 删除文章
+     *
+     * @param deleteArticleReqVO
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Response deleteArticle(DeleteArticleReqVO deleteArticleReqVO) {
+        Long articleId = deleteArticleReqVO.getId();
+        articleMapper.deleteById(articleId);
+        articleContentMapper.deleteByArticleId(articleId);
+        articleCategoryRelMapper.deleteByArticleId(articleId);
+        articleTagRelMapper.deleteByArticleId(articleId);
+        return Response.success();
     }
 }
