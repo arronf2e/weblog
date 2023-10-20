@@ -1,6 +1,7 @@
 package com.weblog.common.domain.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.weblog.common.config.InsertBatchMapper;
+import com.weblog.common.domain.dos.ArticleTagRelDO;
 
-public interface ArticleTagRelMapper extends BaseMapper<ArticleTagRelMapper> {
+public interface ArticleTagRelMapper extends InsertBatchMapper<ArticleTagRelDO> {
 }
