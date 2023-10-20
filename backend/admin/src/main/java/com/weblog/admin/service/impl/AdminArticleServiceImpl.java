@@ -1,12 +1,16 @@
 package com.weblog.admin.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
 import com.weblog.admin.model.vo.article.DeleteArticleReqVO;
+import com.weblog.admin.model.vo.article.FindArticlePageListReqVO;
+import com.weblog.admin.model.vo.article.FindArticlePageListRspVO;
 import com.weblog.admin.model.vo.article.PublishArticleReqVO;
 import com.weblog.admin.service.AdminArticleService;
 import com.weblog.common.domain.dos.*;
 import com.weblog.common.domain.mapper.*;
 import com.weblog.common.exception.BizException;
+import com.weblog.common.utils.PageResponse;
 import com.weblog.common.utils.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.weblog.common.enums.ResponseCodeEnum;
 import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -169,5 +174,38 @@ public class AdminArticleServiceImpl implements AdminArticleService {
         articleCategoryRelMapper.deleteByArticleId(articleId);
         articleTagRelMapper.deleteByArticleId(articleId);
         return Response.success();
+    }
+
+    /**
+     * 查询文章分页数据
+     *
+     * @param findArticlePageListReqVO
+     * @return
+     */
+    @Override
+    public Response findArticlePageList(FindArticlePageListReqVO findArticlePageListReqVO) {
+        Long current = findArticlePageListReqVO.getCurrent();
+        Long size = findArticlePageListReqVO.getSize();
+        String title = findArticlePageListReqVO.getTitle();
+        LocalDate startDate = findArticlePageListReqVO.getStartDate();
+        LocalDate endDate = findArticlePageListReqVO.getEndDate();
+
+        Page<ArticleDO> articleDOPage = articleMapper.selectPageList(current, size, title, startDate, endDate);
+
+        List<ArticleDO> articleDOS = articleDOPage.getRecords();
+
+        // DO 转 VO
+        List<FindArticlePageListRspVO> vos = null;
+        if (!CollectionUtils.isEmpty(articleDOS)) {
+            vos = articleDOS.stream()
+                    .map(articleDO -> FindArticlePageListRspVO.builder()
+                            .id(articleDO.getId())
+                            .title(articleDO.getTitle())
+                            .cover(articleDO.getCover())
+                            .createTime(articleDO.getCreateTime())
+                            .build())
+                    .collect(Collectors.toList());
+        }
+        return PageResponse.success(articleDOPage, vos);
     }
 }
