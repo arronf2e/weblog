@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.weblog.common.domain.dos.ArticleContentDO;
 import com.weblog.common.domain.dos.ArticleDO;
-import com.weblog.common.utils.PageResponse;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -32,4 +32,11 @@ public interface ArticleMapper extends BaseMapper<ArticleDO> {
                 .orderByDesc(ArticleDO::getCreateTime); // 按创建时间倒叙
         return selectPage(page, wrapper);
     }
+
+    /**
+     * 根据文章 ID 查询
+     * @param articleId
+     * @return
+     */
+
 }

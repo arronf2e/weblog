@@ -2,10 +2,8 @@ package com.weblog.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
-import com.weblog.admin.model.vo.article.DeleteArticleReqVO;
-import com.weblog.admin.model.vo.article.FindArticlePageListReqVO;
-import com.weblog.admin.model.vo.article.FindArticlePageListRspVO;
-import com.weblog.admin.model.vo.article.PublishArticleReqVO;
+import com.weblog.admin.convert.ArticleDetailConvert;
+import com.weblog.admin.model.vo.article.*;
 import com.weblog.admin.service.AdminArticleService;
 import com.weblog.common.domain.dos.*;
 import com.weblog.common.domain.mapper.*;
@@ -207,5 +205,41 @@ public class AdminArticleServiceImpl implements AdminArticleService {
                     .collect(Collectors.toList());
         }
         return PageResponse.success(articleDOPage, vos);
+    }
+
+    /**
+     * 查询文章详情
+     *
+     * @param findArticlePageListReqVO
+     * @return
+     */
+    @Override
+    public Response findArticleDetail(FindArticleDetailReqVO findArticlePageListReqVO) {
+        Long articleId = findArticlePageListReqVO.getId();
+
+        ArticleDO articleDO = articleMapper.selectById(articleId);
+
+        if (Objects.isNull(articleDO)) {
+            log.warn("==> 查询的文章不存在，articleId: {}", articleId);
+            throw new BizException(ResponseCodeEnum.ARTICLE_NOT_FOUND);
+        }
+
+        ArticleContentDO articleContentDO = articleContentMapper.selectByArticleId(articleId);
+
+        ArticleCategoryRelDO articleCategoryRelDO = articleCategoryRelMapper.selectByArticleId(articleId);
+
+        List<ArticleTagRelDO> articleTagRelDOS = articleTagRelMapper.selectByArticleId(articleId);
+
+        List<Long> tagIds = articleTagRelDOS.stream().map(ArticleTagRelDO::getTagId).collect(Collectors.toList());
+
+        // DO 转 VO
+        FindArticleDetailRspVO findArticleDetailRspVO = ArticleDetailConvert.INSTANCE.convertDO2VO(articleDO);
+
+        findArticleDetailRspVO.setContent(articleContentDO.getContent());
+        findArticleDetailRspVO.setCategoryId(articleCategoryRelDO.getCategoryId());
+        findArticleDetailRspVO.setTagIds(tagIds);
+
+        return Response.success(findArticleDetailRspVO);
+
     }
 }
