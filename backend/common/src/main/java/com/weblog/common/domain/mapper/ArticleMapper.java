@@ -32,11 +32,4 @@ public interface ArticleMapper extends BaseMapper<ArticleDO> {
                 .orderByDesc(ArticleDO::getCreateTime); // 按创建时间倒叙
         return selectPage(page, wrapper);
     }
-
-    /**
-     * 根据文章 ID 查询
-     * @param articleId
-     * @return
-     */
-
 }
